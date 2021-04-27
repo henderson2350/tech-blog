@@ -25,31 +25,39 @@ router.get('/', async (req, res) => {
     
 })
 
-router.get('/posts:id', (req, res) => {
-    // const postData = await Post.findByPk(req.params.id, {
-    //     include: [
-    //         {
-    //             model: User, 
-    //             attributes: ['username']
-    //         },
-    //         {
-    //             model: Comment,
-    //             attributes: ['text']
-    //         }
-    // ]
-    // })
+router.get('/posts/:id', async (req, res) => {
+    const postData = await Post.findByPk(req.params.id, {
+        include: [
+            {
+                model: User, 
+                attributes: ['username']
+            },
+            {
+                model: Comment,
+                attributes: ['text']
+            }
+    ]
+    })
 
-    // const posts = postData.get({plain: true})
+    const posts = postData.get({plain: true})
 
-    // res.render('post', {
-    //     posts,
-    //     logged_in: req.session.logged_in
-    // })
-    res.render('post')
+    res.render('post', {
+        posts,
+        logged_in: req.session.logged_in
+    })
 })
 
 router.get('/login', (req, res) => {
     res.render('login')
 })
+
+router.get('/signup', (req, res) => {
+    res.render('signup')
+})
+
+router.get('/dashboard', (req, res) => {
+    res.render('dashboard')
+})
+
 
 module.exports = router

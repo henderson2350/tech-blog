@@ -1,1 +1,5 @@
 <p>homepage</p>
+{{#each posts as |post|}}
+<p>Posted by {{post.user.username}}</p>
+<p>{{post.text}}</p>
+{{/each}}
