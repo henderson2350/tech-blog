@@ -26,9 +26,9 @@ router.post('/login', async (req, res) => {
             .status(400)
             return;
         }
-
+        console.log(userData)
         const validPassword = await userData.checkPassword(req.body.password);
-
+        console.log(validPassword)
         if (!validPassword) {
           res
             .status(400)
@@ -44,6 +44,7 @@ router.post('/login', async (req, res) => {
         });
 
     } catch(err) {
+      console.log(err)
         res.status(400).json(err)
     }
 })

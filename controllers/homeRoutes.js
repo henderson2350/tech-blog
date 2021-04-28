@@ -56,7 +56,7 @@ router.get('/signup', (req, res) => {
 })
 
 router.get('/dashboard', (req, res) => {
-    res.render('dashboard')
+    res.render('dashboard', {logged_in: req.session.logged_in})
 })
 
 
